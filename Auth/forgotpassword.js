@@ -1,8 +1,14 @@
 const crypto = require('crypto');
+const express=require('express')
+const dotenv = require('dotenv');
 const nodemailer = require('nodemailer');
 const User = require('../models/user');
+const router = express.Router();
+dotenv.config();
 
-exports.forgotPassword = async (req, res) => {
+const PORT = process.env.PORT || 5000;
+
+router.post('/forgotPassword' ,async (req, res) => {
     const { email } = req.body;
 
     try {
@@ -24,7 +30,7 @@ exports.forgotPassword = async (req, res) => {
             }
         });
 
-        const resetLink = `http://localhost:3000/reset-password/${token}`;
+        const resetLink = `http://localhost:${PORT}/reset-password/${token}`;
 
         await transporter.sendMail({
             to: user.email,
@@ -36,4 +42,5 @@ exports.forgotPassword = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: "Server Error", error });
     }
-};
+});
+module.exports = router;

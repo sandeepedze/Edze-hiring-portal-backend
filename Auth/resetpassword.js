@@ -1,7 +1,9 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
+const express=require('express');
+const router = express.Router();
 
-exports.resetPassword = async (req, res) => {
+router.post('/resetPassword' , async (req, res) => {
     const { token, password } = req.body;
 
     try {
@@ -22,4 +24,5 @@ exports.resetPassword = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: "Server Error", error });
     }
-};
+});
+module.exports = router;

@@ -20,10 +20,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
-app.use('/api/auth/register', registerRoute);
-app.use('/api/auth/login', loginRoute);
-app.use('api/auth/resetpassword',restpasswordRoute);
-app.use('api/auth/forgotpasswordRoutes',forgotpasswordRoute);
+app.use('/api/auth', registerRoute);
+app.use('/api/auth', loginRoute);
+app.use('api/auth',restpasswordRoute);
+app.use('api/auth',forgotpasswordRoute);
 
 connectDB()
   .then(() => {
