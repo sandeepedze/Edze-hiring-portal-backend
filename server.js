@@ -9,7 +9,8 @@ dotenv.config();
 
 const registerRoute = require('./Auth/register');
 const loginRoute = require('./Auth/login');
-
+const restpasswordRoute=require('./Auth/resetpassword');
+const forgotpasswordRoute=require('./Auth/forgotpassword');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -21,6 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Routes
 app.use('/api/auth/register', registerRoute);
 app.use('/api/auth/login', loginRoute);
+app.use('api/auth/resetpassword',restpasswordRoute);
+app.use('api/auth/forgotpasswordRoutes',forgotpasswordRoute);
 
 connectDB()
   .then(() => {
