@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
-
+const dotenv = require('dotenv');
+dotenv.config();
 const connectDB = async () => {
-  const uri = 'mongodb+srv://Edzesoft:CEdzesoft678@cluster0.oxpgp.mongodb.net/Hiring_portal?retryWrites=true&w=majority&appName=Cluster0';
+  const uri = process.env.MONGO_URI;
 
   try {
     await mongoose.connect(uri);
